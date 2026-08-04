@@ -1,0 +1,18 @@
+{
+  "intro": "Unsere persönlichen Notizen, Entdeckungen und Fotos von der Reise.",
+  "notizen": [
+    {
+      "titel": "Beispiel-Notiz (bearbeiten/löschen)",
+      "text": "So sieht eine Notiz aus. Über das CMS änderst du Titel, Text und fügst ein Foto hinzu.",
+      "bild": ""
+    }
+  ],
+  "orte": [
+    {
+      "name": "Beispiel-Restaurant",
+      "notiz": "Warum wir da hin wollen …",
+      "maps": "Roscioli",
+      "bild": ""
+    }
+  ]
+}
