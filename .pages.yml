@@ -1,0 +1,25 @@
+media:
+  input: media
+  output: /media
+content:
+  - name: extras
+    label: Meine Ergänzungen
+    type: file
+    path: content/extras.json
+    fields:
+      - { name: intro, label: Einleitung, type: text }
+      - name: notizen
+        label: Notizen
+        type: list
+        fields:
+          - { name: titel, label: Titel, type: string }
+          - { name: text, label: Text, type: text }
+          - { name: bild, label: Bild, type: image }
+      - name: orte
+        label: Orte / Restaurants
+        type: list
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: notiz, label: Notiz, type: text }
+          - { name: maps, label: Google-Maps-Suchbegriff, type: string }
+          - { name: bild, label: Bild, type: image }
