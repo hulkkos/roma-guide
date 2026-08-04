@@ -7,17 +7,21 @@ content:
     type: file
     path: content/extras.json
     fields:
-      - { name: intro, label: Einleitung, type: text }
+      - name: intro
+        label: Einleitung
+        type: text
       - name: notizen
         label: Notizen
-        type: list
+        type: object
+        list: true
         fields:
           - { name: titel, label: Titel, type: string }
           - { name: text, label: Text, type: text }
           - { name: bild, label: Bild, type: image }
       - name: orte
         label: Orte / Restaurants
-        type: list
+        type: object
+        list: true
         fields:
           - { name: name, label: Name, type: string }
           - { name: notiz, label: Notiz, type: text }
