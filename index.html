@@ -20,24 +20,33 @@
   </header>
 
   <nav class="tabs" id="tabs" aria-label="Abschnitte">
+    <span class="navgroup">Planen</span>
     <a href="#about">Über Rom</a>
-    <a href="#orientierung">Orientierung</a>
-    <a href="#rundgaenge">Rundgänge</a>
     <a href="#fluege">Flug</a>
     <a href="#hotel">Hotel</a>
     <a href="#transfer">Wege</a>
+    <a href="#tickets">Tickets</a>
+    <span class="navgroup">Orientieren</span>
+    <a href="#orientierung">Was ist wo</a>
+    <a href="#rundgaenge">Rundgänge</a>
     <a href="#karten">Karten</a>
-    <a href="#food">Food</a>
-    <a href="#fotospots">Fotos</a>
+    <span class="navgroup">Entdecken</span>
     <a href="#sights">Sights</a>
     <a href="#quartiere">Quartiere</a>
-    <a href="#tickets">Tickets</a>
+    <a href="#fotospots">Fotos</a>
+    <a href="#ausfluege">Ausflüge</a>
+    <span class="navgroup">Geniessen</span>
+    <a href="#food">Food</a>
+    <a href="#kueche">Küche</a>
+    <span class="navgroup">Programm</span>
     <a href="#do">Do</a>
     <a href="#fr">Fr</a>
     <a href="#sa">Sa</a>
     <a href="#so">So</a>
     <a href="#mo">Mo</a>
-    <a href="#tipps">Tipps</a>
+    <span class="navgroup">Praktisch</span>
+    <a href="#tipps">Praxis</a>
+    <a href="#sprache">Sprache</a>
     <a href="#meine">Meine Reise</a>
   </nav>
 
@@ -211,6 +220,12 @@
       <div id="bestof"></div>
       <div id="food-list"></div>
     </section>
+    <!-- KÜCHE -->
+    <section id="kueche" class="sec">
+      <div class="sec-head"><span class="sec-kicker">02e+ · Kulinarik</span><h2>Römische Küche von A–Z</h2></div>
+      <p class="lead">Was bestelle ich? Die Klassiker der römischen Küche erklärt — plus der Kaffee-Knigge, damit du nicht als Tourist auffällst. Die Lokale dazu findest du im <a class="xlink" href="#food">Food</a>-Kapitel.</p>
+      <div id="kueche-list"></div>
+    </section>
 
     <!-- FOTOSPOTS -->
     <section id="fotospots" class="sec">
@@ -232,6 +247,12 @@
       <p class="lead">Jedes Viertel hat seinen eigenen Ton. Was dich wo erwartet, was es Besonderes zu sehen &amp; erleben gibt — und wofür es sich am besten eignet.</p>
       <div id="quartiere-list"></div>
     </section>
+    <!-- AUSFLÜGE -->
+    <section id="ausfluege" class="sec">
+      <div class="sec-head"><span class="sec-kicker">02h · Umgebung</span><h2>Tagesausflüge ab Rom</h2></div>
+      <p class="lead">Wenn Rom mal genug ist: vier lohnende Ziele im Umland — alle ohne Auto erreichbar, ideal für den freien Donnerstag.</p>
+      <div id="ausfluege-list"></div>
+    </section>
 
     <!-- TICKETS -->
     <section id="tickets" class="sec">
@@ -247,6 +268,12 @@
     <section id="tipps" class="sec">
       <div class="sec-head"><span class="sec-kicker">04 · Praxis</span><h2>Gut zu wissen</h2></div>
       <div id="praxis-list"></div>
+    </section>
+    <!-- SPRACHE -->
+    <section id="sprache" class="sec">
+      <div class="sec-head"><span class="sec-kicker">04b · Sprachführer</span><h2>Italienisch fürs Nötigste</h2></div>
+      <p class="lead">Ein paar Brocken reichen weit — die wichtigsten Sätze, Zahlen und ein bisschen römischer Volksmund.</p>
+      <div id="sprache-list"></div>
     </section>
     <!-- MEINE REISE -->
     <section id="meine" class="sec">
@@ -344,9 +371,15 @@
   .pass-grid .v{display:block;font-weight:700;font-size:.9rem;margin-top:.15rem}
 
   /* TABS */
-  .tabs{position:sticky;top:0;z-index:20;display:flex;flex-wrap:wrap;gap:.3rem;
-    padding:.45rem .6rem;background:color-mix(in srgb,var(--bg) 93%,transparent);
-    backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .tabs{position:sticky;top:0;z-index:20;display:flex;flex-wrap:nowrap;gap:.3rem;align-items:center;
+    padding:.5rem .6rem;background:color-mix(in srgb,var(--bg) 93%,transparent);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+    overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .tabs a{scroll-snap-align:start}
+  .navgroup{flex:0 0 auto;font-family:var(--mono);font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--gold);font-weight:700;white-space:nowrap;pointer-events:none;
+    padding:.15rem .15rem .15rem .5rem;margin-left:.1rem;border-left:1px solid var(--line);opacity:.8}
+  .navgroup:first-child{border-left:none;margin-left:0;padding-left:.05rem}
   .tabs::-webkit-scrollbar{display:none}
   .tabs a{flex:0 0 auto;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;
     text-transform:uppercase;text-decoration:none;color:var(--ink-soft);
@@ -677,6 +710,30 @@ ol.stops>li{display:flex;gap:.65rem;padding:.35rem 0;align-items:flex-start}
 .flink{color:var(--gold);text-decoration:none;border-bottom:1px dotted color-mix(in srgb,var(--gold) 60%,transparent)}
 .flink:hover{border-bottom-style:solid}
 
+
+/* ---- kueche / sprache / ausfluege ---- */
+.lead2{color:var(--ink-soft);font-size:.95rem;margin:.1rem 0 .9rem;line-height:1.55}
+.callout.coffee{border-left-color:var(--gold-solid)}
+.glossgroup,.phrgroup{margin:0 0 1.15rem}
+dl.gloss{margin:.3rem 0 0}
+dl.gloss dt{font-weight:800;font-size:.98rem;letter-spacing:-.01em;margin-top:.55rem}
+dl.gloss dd{margin:.12rem 0 0;font-size:.88rem;line-height:1.5;color:var(--ink-soft)}
+dl.gloss dd b{color:var(--ink)}
+.phrlist{display:flex;flex-direction:column;gap:.3rem;margin-top:.35rem}
+.phr{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;align-items:baseline;
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:.5rem .7rem}
+.phr-de{font-size:.86rem;color:var(--ink-soft);line-height:1.35}
+.phr-it{font-size:.9rem;font-weight:700;line-height:1.35}
+.phr-pr{display:block;font-family:var(--mono);font-size:.68rem;font-weight:400;color:var(--gold);letter-spacing:.02em;margin-top:.1rem}
+@media(max-width:400px){.phr{grid-template-columns:1fr;gap:.15rem}}
+
+
+/* ---- day events ---- */
+.day-events{display:flex;flex-direction:column;gap:.35rem;margin:.15rem 0 .7rem}
+.dev{font-size:.83rem;line-height:1.5;padding:.5rem .65rem;border-radius:10px;
+  background:color-mix(in srgb,var(--teal) 12%,transparent);border-left:3px solid var(--teal)}
+.dev b{color:var(--ink)}
+
 </style>
 
 <script>
@@ -721,7 +778,11 @@ ol.stops>li{display:flex;gap:.65rem;padding:.35rem 0;align-items:flex-start}
     ["📅","Was vorab buchen","<b>Wochen im Voraus:</b> Galleria Borghese (Pflicht), Vatikan-Frühslot, Kolosseum. <b>Restaurants:</b> Da Enzo, Roscioli, Armando, Felice, Rooftops."],
     ["☕","Etikette","Cappuccino gilt nur morgens (nach dem Essen: Espresso). An der <b>Theke</b> ist Kaffee günstiger als am Tisch. <b>Aperitivo</b> (Drink + Häppchen am frühen Abend) ist der Spar-Trick."],
     ["💧","Gratis-Wasser (Nasoni)","Über 2500 <b>Nasoni</b>-Trinkbrunnen liefern gratis frisches Wasser — Flasche mitnehmen &amp; auffüllen."],
-    ["🆕","2026-Updates","<b>Trevi:</b> ab Feb 2026 evtl. €2 für den inneren Beckenbereich (von aussen weiter gratis &amp; sichtbar). Nach dem <b>Jubiläum 2025</b> zeitweise mehr Andrang am Vatikan — früh hingehen."]
+    ["🆕","2026-Updates","<b>Trevi:</b> ab Feb 2026 evtl. €2 für den inneren Beckenbereich (von aussen weiter gratis &amp; sichtbar). Nach dem <b>Jubiläum 2025</b> zeitweise mehr Andrang am Vatikan — früh hingehen."],
+    ["💰", "Was kostet Rom? (Richtwerte)", "Zum Überschlagen — Stand 2026, kann variieren:<br><b>Caffè (Espresso) an der Theke</b> ~1,20 € · <b>Cappuccino</b> ~1,50 € · <b>Pizza al taglio</b> ~3–5 € · <b>Aperitivo (Spritz)</b> ~8–12 € · <b>Trattoria-Pasta</b> ~10–14 € · <b>Ganzes Abendessen mit Wein</b> ~30–45 € p. P.<br><b>ÖV-Einzelticket</b> 1,50 € · <b>Tagespass</b> 7 € · <b>Kolosseum</b> ~18 € · <b>Vatikanische Museen</b> ~20 € · <b>Galleria Borghese</b> ~15 €. Viele Kirchen (auch Petersdom) sind <b>gratis</b>. Faustregel Budget-Tag ohne grosses Museum: ~60–80 € p. P."],
+    ["🆘", "Notfall & Gesundheit", "<b>Notruf 112</b> (einheitlich, Deutsch/Englisch möglich) — daneben 118 Rettung, 113 Polizei, 115 Feuerwehr. <b>Apotheke</b> = „farmacia“ (grünes Kreuz); einige haben Nachtdienst („farmacia di turno“, Aushang an der Tür). Als EU-/CH-Reisende Krankenversicherungskarte (EHIC bzw. CH-Versicherungsnachweis) mitnehmen. Leitungswasser und die Nasoni-Brunnen sind <b>trinkbar</b>. Für Kleinigkeiten hilft jede Apotheke auch ohne Rezept weiter."],
+    ["🛍️", "Einkaufen & Märkte", "<b>Mode:</b> die grossen Namen an der Via Condotti (Spanische Treppe), erschwinglicher in den Seitengassen und in der Via del Corso. <b>Märkte:</b> Campo de' Fiori (Obst/Gemüse, vormittags), die Markthalle Testaccio (Streetfood), der riesige Flohmarkt Porta Portese (nur Sonntagvormittag, Trastevere). <b>Mitbringsel mit Sinn:</b> Pecorino & Guanciale (vakuumiert), Olivenöl, Kaffee von Sant'Eustachio/Tazza d'Oro, handgeschöpftes Papier, ein Stück aus einer der alten Kunsthandwerks-Botteghe."],
+    ["🗓️", "Events im September 2026", "Was in eurem Reisefenster (24.–27.9.) laufen kann — bitte die genauen 2026-Daten kurz gegenchecken:<br><b>RomaEuropa Festival</b> — grosses Herbst-Festival für Tanz, Theater &amp; zeitgenössische Kunst, startet im September (romaeuropa.net).<br><b>Giornate Europee del Patrimonio</b> (Europäische Denkmaltage) — meist am letzten September-Wochenende: Sonderöffnungen &amp; oft nur 1&nbsp;€ Eintritt in staatlichen Stätten. Gut möglich, dass es genau auf euer Sa/So fällt.<br><b>Angelus des Papstes</b> — jeden <b>Sonntag ~12:00</b> auf dem Petersplatz, offen für alle.<br><b>Serie&nbsp;A (Fussball)</b> läuft: evtl. Heimspiel von AS&nbsp;Roma oder Lazio im Stadio Olimpico — ein Erlebnis, Spielplan checken.<br><b>Castelli Romani – Traubenfeste</b> (z.&nbsp;B. Sagra dell'Uva in Marino) meist <b>Anfang Oktober</b> — evtl. knapp nach eurer Abreise.<br><i>Übrigens:</i> Der Gratis-Museumssonntag „Domenica al Museo“ ist nur am <b>1.&nbsp;Sonntag</b> (6.9.) — fällt also nicht in euer Wochenende."]
   ];
   var pl=document.getElementById("praxis-list");
   if(pl){ pl.innerHTML='<div class="acclist">'+PRAXIS.map(function(t){
@@ -754,7 +815,7 @@ ol.stops>li{display:flex;gap:.65rem;padding:.35rem 0;align-items:flex-start}
 
   var days = [
     {id:"do",dow:"Do",date:"24. September",title:"Zentrum &amp; Barock",route:"🚶 Ab Monti/Zentrum alles zu Fuss — keine Metro nötig.", items:[
-      {time:"Morgens",cat:"sight",catLabel:"Start",n:"Entspannt in den Tag (Anreise war Mi-Abend)",desc:"Ihr seid schon Mittwochabend angekommen — heute ganzer Tag ohne Hetze. Frühstück in Monti, dann los."},
+      {time:"Vormittag",cat:"sight",catLabel:"Sanfter Start",n:"Ausschlafen — kein Wecker!",desc:"Ihr seid erst gegen Mitternacht in Rom gelandet — heute also ohne Hetze. Ausschlafen, spätes Frühstück in Monti, dann gegen Mittag entspannt los. Der Nachmittag reicht locker für die Zentrums-Schleife."},
       {time:"Alternative",cat:"sight",catLabel:"Ausflug-Idee",n:"Optional: Tagesausflug statt Stadt",desc:"Wer mag, macht heute einen Ausflug — Ostia Antica (antike Hafenstadt, ~40 Min. per Bahn) oder Tivoli (Villa d'Este + Hadriansvilla)."},
       {time:"Nachmittag",cat:"sight",catLabel:"Rundgang",n:"Pantheon → Piazza Navona → Trevi → Spanische Treppe",desc:"Die klassische Zentrums-Schleife, alles fussläufig."},
       {card:true,time:"Lunch",cat:"eat",catLabel:"Streetfood",n:"Pane e Salame",area:"Nähe Trevi · Via S. Maria in Via 19",rating:"4.6",lvl:"€",
@@ -824,6 +885,7 @@ ol.stops>li{display:flex;gap:.65rem;padding:.35rem 0;align-items:flex-start}
   ];
 
   var DAYFOTOS={"do": [{"n": "Pantheon", "q": "Piazza della Rotonda"}, {"n": "Piazza Navona", "q": "Piazza Navona"}, {"n": "Trevi-Brunnen", "q": "Fontana di Trevi"}, {"n": "Spanische Treppe", "q": "Piazza di Spagna"}, {"n": "Forum Romanum", "q": "Via del Campidoglio"}], "fr": [{"n": "Kolosseum", "q": "Parco del Colle Oppio terrazza"}, {"n": "Cimitero Acattolico", "q": "Cimitero Acattolico Roma"}], "sa": [{"n": "Petersdom Kuppel-Illusion", "q": "Via Niccolo Piccolomini"}, {"n": "Petersplatz", "q": "Piazza San Pietro"}, {"n": "Engelsburg", "q": "Ponte Sant Angelo"}], "so": [{"n": "Pincio-Terrasse", "q": "Terrazza del Pincio"}, {"n": "Via Margutta", "q": "Via Margutta Roma"}], "mo": [{"n": "Gianicolo", "q": "Piazzale Giuseppe Garibaldi"}, {"n": "Santa Maria in Trastevere", "q": "Piazza Santa Maria in Trastevere"}, {"n": "Fontana delle Tartarughe", "q": "Fontana delle Tartarughe Roma"}]};
+    var DAYEVENTS={"do": ["🌙 Gestern erst gegen Mitternacht gelandet — heute ohne Wecker, gemütlicher Start."], "sa": ["🏛️ <b>Denkmaltage möglich:</b> die Giornate Europee del Patrimonio fallen oft aufs letzte Sept-Wochenende — dann Sonderöffnungen &amp; oft nur 1&nbsp;€ in staatlichen Stätten. Kurz prüfen.", "⚽ Serie A läuft: evtl. Heimspiel von AS&nbsp;Roma oder Lazio im Stadio Olimpico — Spielplan checken."], "so": ["⛪ <b>Sonntag ~12:00:</b> Angelus-Gebet des Papstes auf dem Petersplatz — offen für alle, wer mag."]};
     document.getElementById("itinerary").innerHTML = days.map(function(d){
     return '<section id="'+d.id+'" class="day">'
       +'<div class="day-head"><span class="day-dow">'+d.dow+'</span>'
@@ -831,7 +893,7 @@ ol.stops>li{display:flex;gap:.65rem;padding:.35rem 0;align-items:flex-start}
       +'<div class="day-title">'+d.title+'</div></div></div>'
       +(d.route?'<div class="day-route">'+d.route+'</div>':'')
       +((DAYFOTOS[d.id]&&DAYFOTOS[d.id].length)?'<div class="day-fotos"><b>\uD83D\uDCF7 Fotospots heute:</b> '+DAYFOTOS[d.id].map(function(f){return '<a href="'+maps(f.q)+'" target="_blank" rel="noopener">'+esc(f.n)+'</a>';}).join(' \u00B7 ')+'</div>':'')
-      +'<div class="daymap" id="daymap-'+d.id+'"></div>'
+      +((DAYEVENTS[d.id]&&DAYEVENTS[d.id].length)?'<div class="day-events">'+DAYEVENTS[d.id].map(function(x){return '<div class="dev">'+x+'</div>';}).join('')+'</div>':'')+'<div class="daymap" id="daymap-'+d.id+'"></div>'
       +'<div class="timeline">'+d.items.map(renderItem).join("")+'</div></section>';
   }).join("");
 
@@ -844,11 +906,11 @@ ol.stops>li{display:flex;gap:.65rem;padding:.35rem 0;align-items:flex-start}
       if(e.isIntersecting){
         tabLinks.forEach(function(a){a.classList.remove("active");});
         var link = idMap[e.target.id];
-        if(link){ link.classList.add("active"); }
+        if(link){ link.classList.add("active"); var tb=document.getElementById("tabs"); if(tb){ tb.scrollTo({left: link.offsetLeft - tb.clientWidth/2 + link.offsetWidth/2, behavior:"smooth"}); } }
       }
     });
   },{rootMargin:"-45% 0px -50% 0px",threshold:0});
-  ["about","fluege","hotel","transfer","karten","food","fotospots","sights","quartiere","tickets","do","fr","sa","so","mo","tipps","meine"].forEach(function(id){
+  ["about","orientierung","rundgaenge","fluege","hotel","transfer","karten","food","kueche","fotospots","sights","quartiere","ausfluege","tickets","do","fr","sa","so","mo","tipps","sprache","meine"].forEach(function(id){
     var el = document.getElementById(id); if(el){ obs.observe(el); }
   });
 
@@ -977,6 +1039,33 @@ ol.stops>li{display:flex;gap:.65rem;padding:.35rem 0;align-items:flex-start}
         +'<div class="acc-body"><p class="rroute">'+esc(r.n)+'</p>'+r.lead
         +'<ol class="stops">'+stops+'</ol>'
         +((r.fotos&&r.fotos.length)?'<p class="rfoto"><b>\uD83D\uDCF7 Fotospots unterwegs \u00B7 </b>'+r.fotos.map(function(f){return '<a class="flink" href="'+maps(f.q)+'" target="_blank" rel="noopener">'+esc(f.n)+'</a>';}).join(' \u00B7 ')+'</p>':'')+'<p class="rpause">'+r.pause+'</p></div></details>';
+    }).join("")+'</div>';
+  })();
+
+
+  /* ---- Kueche / Sprache / Ausfluege ---- */
+  var KUECHE={"intro": "Die römische Küche ist <b>cucina povera</b> — Arme-Leute-Küche aus wenigen, ehrlichen Zutaten, oft von der Schlachtung übrig (das „quinto quarto“, das fünfte Viertel). Kein Chichi, dafür Wucht. Hier das Wichtigste, damit du auf jeder Speisekarte weisst, was du bestellst.", "groups": [{"ico": "🍝", "g": "Die vier römischen Pasta-Klassiker", "items": [["Cacio e Pepe", "Nur Pecorino Romano, schwarzer Pfeffer und Nudelwasser — zu einer sämigen Creme geschlagen. Klingt simpel, ist die schwerste Prüfung jeder Küche. Meist mit Tonnarelli."], ["Carbonara", "Ei, Pecorino, Pfeffer und Guanciale (luftgetrocknete Schweinebacke). <b>Niemals</b> mit Sahne, niemals mit Speck — das ist in Rom fast eine Straftat."], ["Amatriciana", "Tomate, Guanciale, Pecorino, ein Hauch Chili. Ursprünglich aus Amatrice, heute urrömisch — klassisch zu Bucatini (dicke Röhrennudeln)."], ["Gricia", "Die „weisse Amatriciana“ ohne Tomate — Guanciale und Pecorino. Der wenig bekannte Urahn der drei anderen. Ein Geheimtipp für Kenner."]]}, {"ico": "🥙", "g": "Antipasti & Streetfood", "items": [["Supplì", "Frittierte Reisbällchen mit Tomatensugo und einem Kern aus Mozzarella — zieht beim Aufreissen Fäden („supplì al telefono“). Der römische Snack schlechthin, meist in der Pizzeria."], ["Carciofi alla giudia", "Ganze, goldbraun frittierte Artischocke — knusprig wie ein Chip. Spezialität des jüdischen Ghettos. Die Variante „alla romana“ ist geschmort mit Minze und Knoblauch."], ["Fiori di zucca", "In Teig frittierte Zucchiniblüten, gefüllt mit Mozzarella und Sardelle. Unbedingt probieren."], ["Pizza bianca / al taglio", "Rechteckige Blechpizza, nach Gewicht verkauft — einfach zeigen, wie viel du willst. Die „bianca“ (nur Öl, Salz, Rosmarin) ist das römische Weissbrot."], ["Trapizzino", "Moderne Erfindung: eine knusprige Pizza-Tasche, gefüllt mit Schmorgerichten wie Ochsenschwanz oder Hühnchen alla cacciatora. Perfekt für unterwegs."]]}, {"ico": "🍖", "g": "Secondi — die Hauptgerichte", "items": [["Saltimbocca alla romana", "Kalbsschnitzel mit Salbei und rohem Schinken — „springt in den Mund“, so gut."], ["Abbacchio scottadito", "Zarte Lammkoteletts vom Grill, so heiss, dass man sich die Finger verbrennt („scottadito“ = Fingerverbrenner)."], ["Coda alla vaccinara", "Geschmorter Ochsenschwanz in Tomate mit Sellerie — der Inbegriff des „quinto quarto“, geduldig weichgekocht."], ["Trippa alla romana", "Kutteln in Tomatensugo mit Minze und Pecorino. Nichts für jeden, aber urrömisch — traditionell am Samstag."], ["Baccalà", "Frittierter Stockfisch (Kabeljau) — knusprig im Teigmantel, ein Klassiker aus dem Ghetto."]]}, {"ico": "🍨", "g": "Dolci — süsser Abschluss", "items": [["Maritozzo", "Weiches, leicht süsses Brötchen, aufgeschnitten und mit einer üppigen Wolke Schlagsahne gefüllt. Das römische Frühstück — zum Cappuccino."], ["Tiramisù", "Kein römisches Original, aber überall — Löffelbiskuit, Espresso, Mascarpone."], ["Gelato", "Gutes Eis erkennst du an gedeckten Behältern, natürlichen Farben (das Pistazie ist blass, nicht giftgrün) und einer kurzen Zutatenliste. Finger weg von aufgetürmten Neonbergen an Touristenorten."]]}, {"ico": "🍷", "g": "Trinken — Aperitivo & Wein", "items": [["Aperitivo", "Das heilige Ritual vor dem Essen (ca. 18–20 Uhr): ein Drink, zu dem es Oliven, Chips, oft ein kleines Buffet gibt. Klassiker: Aperol Spritz, Negroni (der in Rom besonders gern getrunken wird), Campari."], ["Vino dei Castelli", "Der leichte Weisswein aus den Albaner Bergen vor der Stadt (Frascati) — der klassische Hauswein der römischen Trattoria, offen im Viertelliter („un quarto“)."], ["Grattachecca", "Sommerliches Strasseneis aus geschabtem Eis mit Fruchtsirup — an kleinen Kiosken am Tiber, uralte römische Tradition."]]}], "coffee": "<b>Der Kaffee-Knigge:</b> „un caffè“ heisst <b>immer Espresso</b>. <b>Cappuccino</b> gilt nur bis ca. 11 Uhr als angemessen — nach dem Essen bestellt ihn keine Römerin (die Milch „liegt schwer“). Getrunken wird meist im Stehen <b>al banco</b> (an der Theke) — das ist billiger als am Tisch, wo ein Aufschlag dazukommt. Weitere: <i>caffè macchiato</i> (Espresso mit einem Tropfen Milch), <i>caffè lungo</i> (etwas mehr Wasser), <i>caffè corretto</i> („korrigiert“ mit einem Schuss Grappa). Und die Rechnung beim Café heisst nach der Tasse — erst geniessen, dann zahlen."};
+  var PHRASE={"intro": "Fast alle im Tourismus sprechen Englisch — aber ein paar Brocken Italienisch öffnen Türen und Herzen. Die Römer freuen sich über jeden Versuch.", "pron": "<b>Aussprache in Kürze:</b> <i>c</i> vor e/i wie „tsch“ (ciao = „tschau“), sonst wie „k“. <i>ch</i> immer „k“ (chiesa = „kiesa“). <i>gn</i> wie „nj“ (gnocchi = „njocki“). <i>gl</i> wie „lj“ (famiglia). <i>sc</i> vor e/i wie „sch“ (uscita = „uschita“). Die Betonung liegt meist auf der vorletzten Silbe.", "groups": [{"ico": "👋", "g": "Begrüssung & Höflichkeit", "items": [["Guten Morgen / Tag", "Buongiorno", "bwon-DSCHOR-no"], ["Guten Abend", "Buonasera", "bwona-SEE-ra"], ["Hallo / Tschüss (locker)", "Ciao", "tschau"], ["Auf Wiedersehen", "Arrivederci", "arri-we-DER-tschi"], ["Bitte", "Per favore", "per fa-WOO-re"], ["Danke / Vielen Dank", "Grazie / Grazie mille", "GRAA-tsie"], ["Gern geschehen", "Prego", "PREE-go"], ["Entschuldigung", "Scusi", "SKUU-si"], ["Ja / Nein", "Sì / No", ""], ["Sprechen Sie Englisch?", "Parla inglese?", "PAR-la in-GLEE-se"]]}, {"ico": "☕", "g": "Im Café & Restaurant", "items": [["Einen Kaffee, bitte", "Un caffè, per favore", ""], ["Die Speisekarte, bitte", "Il menù, per favore", ""], ["Was empfehlen Sie?", "Cosa mi consiglia?", "KO-sa mi kon-SI-lja"], ["Ein Glas Rotwein / Weisswein", "Un bicchiere di vino rosso / bianco", ""], ["Wasser mit / ohne Kohlensäure", "Acqua frizzante / naturale", ""], ["Die Rechnung, bitte", "Il conto, per favore", "il KON-to"], ["Zum Wohl! / Prost", "Salute! / Cin cin", "sa-LUU-te / tschin tschin"], ["Es war köstlich", "Era squisito", "EE-ra skwi-SII-to"]]}, {"ico": "🔢", "g": "Zahlen", "items": [["1 · 2 · 3", "uno · due · tre", ""], ["4 · 5 · 6", "quattro · cinque · sei", ""], ["7 · 8 · 9 · 10", "sette · otto · nove · dieci", ""], ["Wie viel kostet das?", "Quanto costa?", "KWAN-to KOS-ta"]]}, {"ico": "🧭", "g": "Unterwegs & im Notfall", "items": [["Wo ist …?", "Dov'è …?", "do-WE"], ["Links / Rechts / Geradeaus", "Sinistra / Destra / Dritto", ""], ["Der Bahnhof / Die Toilette", "La stazione / Il bagno", ""], ["Ich verstehe nicht", "Non capisco", "non ka-PIS-ko"], ["Hilfe!", "Aiuto!", "a-JUU-to"], ["Ich brauche einen Arzt", "Ho bisogno di un medico", ""], ["Notruf (Polizei/Rettung)", "112", ""]]}, {"ico": "🗯️", "g": "Römisch für Fortgeschrittene (Sprichwörter)", "items": [["„Alle Wege führen nach Rom.“", "Tutte le strade portano a Roma", ""], ["„Rom wurde nicht an einem Tag erbaut.“", "Roma non è stata costruita in un giorno", ""], ["„Stirbt ein Papst, kürt man den nächsten.“ (Niemand ist unersetzlich)", "Morto un papa se ne fa un altro", ""], ["„Setzt der Petersdom den Hut auf, hol den Schirm.“ (Wolken über St. Peter = bald Regen)", "Quando San Pietro mette er cappello, pija l'ombrello", ""], ["Getrennt zahlen", "pagare alla romana", "(wörtlich „auf römische Art“ — jeder gleich viel)"]]}]};
+  var AUSFLUEGE={"intro": "Ihr habt am <b>Donnerstag einen ganzen Extra-Tag</b> — ideal, um Rom einmal den Rücken zu kehren. Alle vier Ziele sind bequem als Tagesausflug machbar, ohne Auto. Am lohnendsten für Ersttäter: Ostia Antica (antik, nah) oder Tivoli (Gärten & Kaiservilla).", "trips": [{"n": "Ostia Antica", "hook": "Roms eigenes Pompeji — nur eine Zugfahrt entfernt, aber ohne die Massen.", "anreise": "Metro B bis Piramide, dort in die Regionalbahn Roma–Lido (gleiches ÖV-Ticket), ~30 Min bis „Ostia Antica“. Insgesamt ~45 Min ab Zentrum.", "dauer": "halber bis ganzer Tag", "ticket": "~18 €, Park meist Di–So", "desc": "Die versandete Hafenstadt des antiken Rom ist erstaunlich vollständig: Man läuft durch echte Strassen mit Kopfsteinpflaster, betritt Wohnhäuser, Thermen mit Mosaikböden, eine Bäckerei mit Mühlsteinen, ein antikes Amphitheater, das im Sommer noch bespielt wird. Weil kaum jemand herkommt, hat man das Gefühl, die Stadt gehöre einem allein — anschaulicher als das Forum Romanum und viel entspannter als Pompeji.", "tip": "Feste Schuhe, Wasser, Sonnenschutz — es gibt wenig Schatten. Ein Café/Restaurant ist am Eingang. Gut mit einem Nachmittag am nahen Strandort Ostia zu verbinden.", "q": "Ostia Antica Scavi"}, {"n": "Tivoli — Villa d'Este & Villa Adriana", "hook": "Renaissance-Wasserspiele und die gigantische Traumvilla eines Kaisers.", "anreise": "Regionalzug ab Termini/Tiburtina (~1 h) oder Cotral-Bus ab Metro B „Ponte Mammolo“. Die Villa Adriana liegt ausserhalb — vom Ort mit dem CAT-Bus Nr. 4.", "dauer": "ganzer Tag", "ticket": "Villa d'Este ~12 €, Villa Adriana ~12 €", "desc": "Das Bergstädtchen östlich von Rom war schon in der Antike der Rückzugsort der Reichen. Die <b>Villa d'Este</b> ist ein Wunderwerk der Gartenkunst: über 500 Fontänen, Kaskaden und Wasserorgeln stürzen terrassenförmig den Hang hinab — Vorbild aller Renaissancegärten, die schon Goethe verzauberten. Die <b>Villa Adriana</b> am Fuss des Orts war der fast stadtgrosse Landsitz Kaiser Hadrians, der hier Bauten aus dem ganzen Reich nachbilden liess — ein Poesiealbum aus Stein, über Olivenhaine verstreut.", "tip": "Beide an einem Tag ist sportlich — wer es ruhig mag, wählt eine. Die Wasserspiele der Villa d'Este sind am schönsten bei Sonne. Die dritte im Bunde, die wildromantische Villa Gregoriana mit ihrer 100-m-Kaskade, ist etwas für Naturliebhaber.", "q": "Villa d'Este Tivoli"}, {"n": "Castelli Romani — Frascati & die Albaner Berge", "hook": "Weinhügel, Papst-Sommersitz und Seen — das grüne Naherholungsgebiet der Römer.", "anreise": "Regionalzug ab Termini nach Frascati (~30 Min) oder Castel Gandolfo. Cotral-Busse verbinden die einzelnen Orte.", "dauer": "halber bis ganzer Tag", "ticket": "frei (Weingüter/Museen einzeln)", "desc": "Vor den Toren Roms ziehen sich die Albaner Berge mit ihren Vulkanseen und Weindörfern — den „Castelli Romani“. In <b>Frascati</b> trinkt man den namensgebenden leichten Weisswein direkt in den „fraschette“, urigen Weinschänken, zu Brot, Schinken und Porchetta. In <b>Castel Gandolfo</b> über dem tiefblauen Albaner See lag jahrhundertelang die Sommerresidenz der Päpste — deren Gärten heute besichtigt werden können.", "tip": "Der entspannteste, „römischste“ Ausflug — mehr Genuss als Sightseeing. Am Wochenende kommen die Römer selbst zum Essen heraus.", "q": "Frascati Roma"}, {"n": "Ostia — der Strand der Römer", "hook": "Füsse ins Meer, wenn der September noch warm ist.", "anreise": "Metro B → Piramide → Bahn Roma–Lido bis „Cristoforo Colombo“ oder „Lido Centro“, ~40 Min.", "dauer": "Nachmittag", "ticket": "öffentliche Strände frei; „stabilimenti“ (Liegen) kostenpflichtig", "desc": "Ende September ist das Meer oft noch angenehm warm und die Strände sind leer. Kein Traumstrand, aber der schnellste Sprung ins Wasser ab Rom — gut als Belohnung nach einem Vormittag in Ostia Antica auf derselben Bahnlinie.", "tip": "Öffentliche Abschnitte („spiaggia libera“) sind gratis; die kostenpflichtigen Bäder bieten Liegen und Duschen. Frischer Fisch in den Lokalen am Wasser.", "q": "Lido di Ostia spiaggia"}]};
+  (function(){
+    var host=document.getElementById("kueche-list"); if(!host) return;
+    host.innerHTML='<p class="lead2">'+KUECHE.intro+'</p><div class="callout coffee">'+KUECHE.coffee+'</div>'
+      +KUECHE.groups.map(function(g){return '<div class="glossgroup"><h3 class="zonehd">'+g.ico+' '+esc(g.g)+'</h3><dl class="gloss">'+g.items.map(function(it){return '<dt>'+esc(it[0])+'</dt><dd>'+it[1]+'</dd>';}).join("")+'</dl></div>';}).join("");
+  })();
+  (function(){
+    var host=document.getElementById("sprache-list"); if(!host) return;
+    host.innerHTML='<p class="lead2">'+PHRASE.intro+'</p><div class="callout">'+PHRASE.pron+'</div>'
+      +PHRASE.groups.map(function(g){return '<div class="phrgroup"><h3 class="zonehd">'+g.ico+' '+esc(g.g)+'</h3><div class="phrlist">'+g.items.map(function(it){return '<div class="phr"><span class="phr-de">'+esc(it[0])+'</span><span class="phr-it">'+esc(it[1])+(it[2]?' <span class="phr-pr">'+esc(it[2])+'</span>':'')+'</span></div>';}).join("")+'</div></div>';}).join("");
+  })();
+  (function(){
+    var host=document.getElementById("ausfluege-list"); if(!host) return;
+    host.innerHTML='<p class="lead2">'+AUSFLUEGE.intro+'</p><div class="acclist">'+AUSFLUEGE.trips.map(function(t){
+      return '<details class="acc"><summary><span class="acc-t">🚆 '+esc(t.n)+'</span><span class="acc-tags"><span class="rdur">'+esc(t.dauer)+'</span></span></summary><div class="acc-body">'
+        +'<p class="hook">'+esc(t.hook)+'</p>'
+        +'<div class="facts"><span class="f">🚉 '+esc(t.anreise)+'</span><span class="f">⏱️ '+esc(t.dauer)+'</span><span class="f">🎟️ '+esc(t.ticket)+'</span></div>'
+        +'<p>'+t.desc+'</p>'
+        +'<p><b>Tipp · </b>'+esc(t.tip)+'</p>'
+        +'<a class="btn map btn-inline" href="'+maps(t.q)+'" target="_blank" rel="noopener">Standort</a></div></details>';
     }).join("")+'</div>';
   })();
 
