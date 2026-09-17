@@ -1034,6 +1034,9 @@ body[data-view="start"] .subnav,body[data-view="karte"] .subnav{display:none}
 .hb-must{background:var(--wine);color:#fff;font-size:.6rem;font-weight:800;padding:.08rem .35rem;border-radius:6px;letter-spacing:.03em}
 .hb-lnk{color:var(--gold-solid);font-weight:700;text-decoration:underline;font-size:.8rem;white-space:nowrap}
 .hb-done{margin-top:.45rem;font-size:.78rem;color:var(--teal);font-weight:700}
+
+/* ===== Zurück-Pill (nach Sprung) ===== */
+.backpill{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom));z-index:70;border:0;background:var(--gold-solid);color:var(--gold-ink);font:800 .82rem/1 var(--sans);padding:.62rem 1.15rem;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.35);cursor:pointer;-webkit-tap-highlight-color:transparent}
 </style>
 
 <script>
@@ -1221,10 +1224,12 @@ body[data-view="start"] .subnav,body[data-view="karte"] .subnav{display:none}
       so:{wx:"🌧️ <b>Bei Regen:</b> Galleria Borghese (indoor) &amp; Santa Maria del Popolo (Caravaggios); Shopping im Tridente ist überdacht genug. ☀️ <b>Bei Hitze:</b> viel Schatten im Park, Pause am Giardino del Lago.",ab:"🍽️ <b>Heute Abend:</b> im Zentrum (Armando al Pantheon — reservieren) od. entspannt zurück nach Testaccio."},
       mo:{wx:"🌧️ <b>Bei Regen:</b> gemütlich in einem Trastevere-Café + Basilica Santa Maria in Trastevere (Goldmosaike). ☀️ <b>Bei Hitze:</b> kurzhalten, früh zum Flughafen.",ab:"🧳 <b>Abreisetag:</b> Mittagessen leicht halten, dann FL1 ab Ostiense zum Flug."}
     };
+    var LINKSLUG={"Pantheon":"pantheon","Piazza Navona":"navona","Trevi":"trevi","Spanische Treppe":"spanische-treppe","Largo Argentina":"largo-argentina","Kolosseum":"kolosseum","Forum":"kolosseum","Palatin":"kolosseum","San Clemente":"sanclemente","Cestius-Pyramide":"cimitero","Cimitero Acattolico":"cimitero","Kapitol-Aussicht":"campidoglio","Vatikanische Museen":"vatikanmuseen","Sixtina":"vatikanmuseen","Petersdom":"petersdom","Engelsburg":"engelsburg","Galleria Borghese":"borghese","Villa Borghese":"villa-borghese","Piazza del Popolo":"popolo","Santa Maria del Popolo":"popolo","Palazzo Doria Pamphilj":"doria"};
+    function linkify(html){ if(!html)return html; Object.keys(LINKSLUG).forEach(function(n){ html=html.split("<b>"+n+"</b>").join('<b><a class="xlink" href="#s-'+LINKSLUG[n]+'">'+n+"</a></b>"); }); return html; }
     function renderVariants(v){
       return '<div class="day-variants"><div class="dv-title">🧭 Zwei Tempi — ihr wählt</div>'
-        +'<div class="dv dv-a"><div class="dv-h"><span class="dv-k">😌 Entspannt</span><span class="dv-t">'+v.a.t+'</span></div><div class="dv-s">'+v.a.s+'</div></div>'
-        +'<div class="dv dv-b"><div class="dv-h"><span class="dv-k">🚶 Voll</span><span class="dv-t">'+v.b.t+'</span></div><div class="dv-s">'+v.b.s+'</div>'+(v.b.note?'<div class="dv-note">'+v.b.note+'</div>':'')+'</div></div>';
+        +'<div class="dv dv-a"><div class="dv-h"><span class="dv-k">😌 Entspannt</span><span class="dv-t">'+v.a.t+'</span></div><div class="dv-s">'+linkify(v.a.s)+'</div></div>'
+        +'<div class="dv dv-b"><div class="dv-h"><span class="dv-k">🚶 Voll</span><span class="dv-t">'+v.b.t+'</span></div><div class="dv-s">'+linkify(v.b.s)+'</div>'+(v.b.note?'<div class="dv-note">'+v.b.note+'</div>':'')+'</div></div>';
     }
     document.getElementById("itinerary").innerHTML = days.map(function(d){
     return '<section id="'+d.id+'" class="day">'
@@ -1234,7 +1239,7 @@ body[data-view="start"] .subnav,body[data-view="karte"] .subnav{display:none}
       +((DAYINTRO[d.id])?'<p class="day-intro">'+DAYINTRO[d.id]+'</p>':'')
       +(d.route?'<div class="day-route">'+d.route+'</div>':'')
       +(VARIANTS[d.id]?renderVariants(VARIANTS[d.id]):'')
-      +(EXTRA[d.id]?'<div class="day-extra"><div class="dx-wx">'+EXTRA[d.id].wx+'</div><div class="dx-ab">'+EXTRA[d.id].ab+'</div></div>':'')
+      +(EXTRA[d.id]?'<div class="day-extra"><div class="dx-wx">'+linkify(EXTRA[d.id].wx)+'</div><div class="dx-ab">'+linkify(EXTRA[d.id].ab)+'</div></div>':'')
       +((DAYFOTOS[d.id]&&DAYFOTOS[d.id].length)?'<div class="day-fotos"><b>\uD83D\uDCF7 Fotospots heute:</b> '+DAYFOTOS[d.id].map(function(f){return '<a href="'+maps(f.q)+'" target="_blank" rel="noopener">'+esc(f.n)+'</a>';}).join(' \u00B7 ')+'</div>':'')
       +((DAYEVENTS[d.id]&&DAYEVENTS[d.id].length)?'<div class="day-events">'+DAYEVENTS[d.id].map(function(x){return '<div class="dev">'+x+'</div>';}).join('')+'</div>':'')+'<div class="daymap" id="daymap-'+d.id+'"></div>'
       +'<div class="timeline">'+d.items.map(renderItem).join("")+'</div></section>';
@@ -1523,16 +1528,25 @@ body[data-view="start"] .subnav,body[data-view="karte"] .subnav{display:none}
   window.showView=function(v,noScroll){ if(VIEWS.indexOf(v)<0)v='start'; document.body.setAttribute('data-view',v); buildSub(v); barActive(v); if(!noScroll)window.scrollTo(0,0); };
   function jump(id){ var el=document.getElementById(id); if(!el)return; if(el.tagName==='DETAILS')el.open=true; function go(){ var e=document.getElementById(id); if(e)e.scrollIntoView({block:'start'}); } requestAnimationFrame(function(){requestAnimationFrame(go);}); setTimeout(go,250); setTimeout(go,650); if(history.replaceState)history.replaceState(null,'',location.pathname+location.search+'#'+id); }
   function viewOf(id){ if(!id)return null; if(['do','fr','sa','so','mo'].indexOf(id)>=0)return 'programm'; var el=document.getElementById(id); if(!el){return id.indexOf('s-')===0?'entdecken':null;} var h=el.closest('[data-sv]'); return h?h.getAttribute('data-sv'):null; }
+  var RETURN=null;
+  var VLABEL={start:'Start',programm:'Programm',karte:'Karte',entdecken:'Entdecken',info:'Info'};
+  var backpill=document.createElement('button'); backpill.className='backpill'; backpill.id='backpill'; backpill.style.display='none';
+  document.body.appendChild(backpill);
+  function showBack(){ var cur=document.body.getAttribute('data-view'); if(RETURN && RETURN.view!==cur){ backpill.textContent='\u2190 Zur\u00fcck zu '+(VLABEL[RETURN.view]||''); backpill.style.display='block'; } else { backpill.style.display='none'; } }
+  backpill.addEventListener('click',function(){ if(!RETURN)return; var r=RETURN; RETURN=null; showView(r.view,true); var el=r.el; function go(){ if(el&&el.scrollIntoView)el.scrollIntoView({block:'center'}); } requestAnimationFrame(function(){requestAnimationFrame(go);}); setTimeout(go,250); setTimeout(go,600); showBack(); });
   document.addEventListener('click',function(ev){
     var a=ev.target.closest?ev.target.closest('a[href^="#"]'):null; if(!a)return;
     if(a.hasAttribute('data-kia'))return;
     var id=a.getAttribute('href').slice(1); if(!id)return;
     var v=viewOf(id); if(!v)return;
-    ev.preventDefault(); showView(v,true);
+    ev.preventDefault();
+    var cur=document.body.getAttribute('data-view');
+    if(v!==cur){ RETURN={view:cur, el:a}; }
+    showView(v,true);
     if(a.closest('#subnav')){ [].forEach.call(subnav.children,function(c){c.classList.toggle('active',c===a);}); }
-    jump(id);
+    jump(id); showBack();
   },true);
-  if(bar){ [].forEach.call(bar.children,function(b){ b.addEventListener('click',function(){ showView(b.getAttribute('data-view')); }); }); }
+  if(bar){ [].forEach.call(bar.children,function(b){ b.addEventListener('click',function(){ RETURN=null; showView(b.getAttribute('data-view')); showBack(); }); }); }
   [].forEach.call(document.querySelectorAll('.tile[data-view]'),function(t){ t.addEventListener('click',function(){ showView(t.getAttribute('data-view')); }); });
   // HEUTE / Countdown
   (function(){ var box=document.getElementById('hub-today'); if(!box)return;
